@@ -1,0 +1,14 @@
+/*
+
+!.gitignore
+
+!.husky
+!examples
+!packages
+
+!.editorconfig
+!.lintstagedrc.json
+!.prettierrc.json
+!README.md
+!package-lock.json
+!package.json

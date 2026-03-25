@@ -1,0 +1,9 @@
+{
+  "name": "miniprogram",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "miniprogram-render": "latest",
+    "miniprogram-element": "latest"
+  }
+}
