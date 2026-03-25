@@ -1,5 +1,3 @@
-# vite-plugin-kbone
-
 ## 简介
 
 [kbone](https://github.com/Tencent/kbone) 是一个致微信小程序和 web 端同构的解决方案
