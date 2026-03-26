@@ -28,9 +28,7 @@ export default defineConfig(config => {
           exports: 'auto',
           assetFileNames: assetInfo => {
             // 输出 wxss 文件
-            if (assetInfo.name && assetInfo.name.endsWith('.css')) {
-              return 'common/[name].wxss'
-            }
+            if (assetInfo?.names?.[0]?.endsWith?.('.css')) return 'common/[name].wxss'
             return 'common/[name].[ext]'
           }
         }
