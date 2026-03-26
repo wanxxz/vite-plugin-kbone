@@ -24,7 +24,7 @@ export default defineConfig(config => {
         },
         output: {
           entryFileNames: 'common/[name].js',
-          format: 'iife',
+          format: 'cjs',
           exports: 'auto',
           assetFileNames: assetInfo => {
             // 输出 wxss 文件
