@@ -1,0 +1,12 @@
+/*
+
+!.gitignore
+
+!src
+
+!README.md
+!index.html
+!miniprogram.config.json
+!package.json
+!tsconfig.json
+!vite.config.ts
