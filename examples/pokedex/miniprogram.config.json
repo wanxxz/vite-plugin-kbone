@@ -1,0 +1,37 @@
+{
+  "origin": "https://miniprogram.default",
+  "entry": "/",
+  "router": {
+    "index": ["/index"]
+  },
+  "redirect": {
+    "notFound": "index",
+    "accessDenied": "index"
+  },
+  "generate": {
+    "autoBuildNpm": "npm"
+  },
+  "app": {
+    "navigationBarTitleText": ""
+  },
+  "appExtraConfig": {
+    "sitemapLocation": "sitemap.json"
+  },
+  "global": {},
+  "pages": {},
+  "optimization": {
+    "domSubTreeLevel": 10,
+
+    "elementMultiplexing": true,
+    "textMultiplexing": true,
+    "commentMultiplexing": true,
+    "domExtendMultiplexing": true,
+
+    "styleValueReduce": 5000,
+    "attrValueReduce": 5000
+  },
+  "projectConfig": {
+    "projectname": "pokedex",
+    "appid": ""
+  }
+}
