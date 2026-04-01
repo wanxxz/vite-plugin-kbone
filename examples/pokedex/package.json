@@ -10,10 +10,6 @@
   },
   "dependencies": {
     "@linaria/core": "7.0.0",
-    "@tanstack/query-db-collection": "^1.0.32",
-    "@tanstack/react-db": "^0.1.79",
-    "@tanstack/react-query": "^5.95.2",
-    "@tanstack/react-virtual": "^3.13.23",
     "axios": "0.18.1",
     "axios-miniprogram-adapter": "0.3.5",
     "open-props": "1.7.23",
