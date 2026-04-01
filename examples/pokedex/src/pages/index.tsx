@@ -5,6 +5,8 @@ import { createCollection, useLiveQuery } from '@tanstack/react-db'
 import { queryCollectionOptions } from '@tanstack/query-db-collection'
 import { QueryClient } from '@tanstack/react-query'
 import { useVirtualizer } from '@tanstack/react-virtual'
+import axios from 'axios'
+import axiosMPAdapter from 'axios-miniprogram-adapter'
 
 // ---------------------------------------------------------------------------
 // Types
@@ -32,6 +34,11 @@ interface PokemonDetail {
 // ---------------------------------------------------------------------------
 const queryClient = new QueryClient()
 
+// Setup axios adapter for miniprogram builds
+if (import.meta.env.MODE === 'mp') {
+  axios.defaults.adapter = axiosMPAdapter
+}
+
 // ---------------------------------------------------------------------------
 // Collection — loads first 300 Pokémon from the PokeAPI
 // ---------------------------------------------------------------------------
@@ -41,8 +48,9 @@ const pokemonCollection = createCollection(
     queryClient,
     queryKey: ['pokemon-list'],
     queryFn: async () => {
-      const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=300')
-      const json = await res.json()
+      const res = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=300')
+      console.log(res)
+      const json = res.data
       return json.results.map((p: { name: string; url: string }, i: number) => ({
         id: i + 1,
         name: p.name,
@@ -368,11 +376,22 @@ function DetailModal({ id, onClose }: { id: number; onClose: () => void }) {
   const [detail, setDetail] = useState<PokemonDetail | null>(null)
 
   React.useEffect(() => {
-    let cancel = false
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-      .then((r) => r.json())
-      .then((d) => { if (!cancel) setDetail(d) })
-    return () => { cancel = true }
+    let cancelled = false
+    const controller = new AbortController()
+
+    axios
+      .get(`https://pokeapi.co/api/v2/pokemon/${id}`, { signal: controller.signal })
+      .then((r) => {
+        if (!cancelled) setDetail(r.data)
+      })
+      .catch(() => {
+        /* ignore */
+      })
+
+    return () => {
+      cancelled = true
+      controller.abort()
+    }
   }, [id])
 
   return (

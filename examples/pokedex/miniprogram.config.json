@@ -32,6 +32,7 @@
   },
   "projectConfig": {
     "projectname": "pokedex",
-    "appid": ""
+    "appid": "",
+    "libVersion": "latest"
   }
 }
